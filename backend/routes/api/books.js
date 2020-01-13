@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
             console.log(err);
         } else {
             // Skickar respons om vilket objekt som lagts till
-            res.status(201).send({ message: "Tillags" });
+            res.status(201).send({ message: "Tillagd" });
         }
     });
 });
