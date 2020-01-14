@@ -3,8 +3,8 @@
     <h1>Böcker</h1>
     <p class="error" v-if="error">{{error}}</p>
 
-<!-- Lägg till-formuläret -->
-    <form>
+    <!-- Lägg till-formuläret -->
+    <form id="add-form">
       <h2>Lägg till bok</h2>
       <label for="title">Titel</label>
       <br />
@@ -16,16 +16,16 @@
       <br />
       <label for="published">Publiceringsår</label>
       <br />
-      <input type="text" id="published" v-model="published" placeholder="Publiceringsår" required />
+      <input type="number" id="published" v-model="published" placeholder="Publiceringsår" required />
       <br />
       <label for="add-book">Antal sidor</label>
       <br />
-      <input type="text" id="pages" v-model="pages" placeholder="Antal sidor" required />
+      <input type="number" id="pages" v-model="pages" placeholder="Antal sidor" required />
       <br />
       <button v-on:click="addBook">Lägg till bok</button>
     </form>
 
-<!-- Listning av böcker -->
+    <!-- Listning av böcker -->
     <div class="books-container">
       <div
         class="book"
@@ -122,18 +122,28 @@ export default {
 .container h1 {
   text-align: center;
 }
+#add-form {
+  margin-bottom: 50px;
+}
 .book {
-  background-color: aquamarine;
+  background-color: rgb(109, 109, 109);
+  color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   width: 50%;
   margin: 1% 22.5%;
   padding: 2.5%;
   border-radius: 10px;
 }
+.book:nth-child(even) {
+  background-color: rgb(237, 237, 237);
+  color: black;
+}
 
 .error {
   background-color: rgb(242, 91, 91);
-  padding: 20px;
+  padding: 15px;
   color: white;
+  border-radius: 5px;
+  margin: 1% 0;
 }
-
 </style>

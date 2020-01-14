@@ -1,7 +1,19 @@
 <template>
   <div class="container">
-    <h1>Välkommen till bokklubben</h1>
-    <p> Vänligen logga in eller registrera dig för att kunna ta del av innehållet på webbplatsen </p>
+    <div id="image-container">
+      <img id="home-img" src="../assets/background.jpg" alt="Bild på ett bibliotek inifrån" />
+    </div>
+    <div id="banner-text">
+      <h1>
+        Välkommen till
+        <span id="banner-logo">Biblioteket</span>
+      </h1>
+      <p>
+        Vänligen
+        <router-link to="/login">logga in</router-link>eller
+        <router-link to="/register">registrera dig</router-link>för att kunna ta del av innehållet på webbplatsen
+      </p>
+    </div>
   </div>
 </template>
 
@@ -15,5 +27,38 @@ h1 {
 }
 p {
   text-align: center;
+}
+#banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.955);
+  padding: 25px;
+  border-radius: 10px;
+}
+#banner-text h1 {
+  font-size: 30px;
+}
+#banner-text a {
+  color: rgb(2, 189, 92);
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Baloo Bhai", cursive;
+}
+#banner-text p {
+  font-size: 18px;
+}
+#banner-logo {
+  font-family: "Luckiest Guy", cursive;
+  letter-spacing: 0.5px;
+}
+#image-container {
+  position: relative;
+}
+#home-img {
+  width: 100%;
+  border-radius: 2.5px;
 }
 </style>

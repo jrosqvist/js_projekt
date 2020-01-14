@@ -21,29 +21,48 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: "Acme", sans-serif;
+}
+body {
+  background-color: black;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Baloo Bhai", cursive;
+}
+p,
+a,
+label {
+  font-family: "Mukta", sans-serif;
 }
 #content {
   max-width: 960px;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 2.5%;
+  background-color: rgb(245, 245, 245);
+  min-height: 100vh;
 }
 form {
-  background-color: rgb(197, 181, 245);
-  width:50%;
-  margin:0 22.5%;
+  background-color: rgb(237, 237, 237);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  width: 50%;
+  margin: 0 22.5%;
   padding: 2.5%;
   border-radius: 10px;
 }
 form h2 {
   text-align: center;
+  margin-bottom: 20px;
 }
 form input {
   border: none;
   border-radius: 5px;
   margin: 1% 5%;
-  padding: 1.25% 2.5%;
+  padding: 2.5%;
   display: block;
   width: 85%;
 }
@@ -55,12 +74,13 @@ form button {
   border-radius: 5px;
   width: 25%;
   margin: 2.5% 37.5%;
-  padding: 20px;
-  background-color: black;
+  padding: 10px;
+  background-color: rgb(2, 189, 92);
   color: white;
+  font-family: "Baloo Bhai", cursive;
 }
 form button:hover {
   cursor: pointer;
-  background-color: darkgray;
+  background-color: rgb(1, 184, 89);
 }
 </style>

@@ -5,7 +5,7 @@ const mongodb = require("mongodb");
 // Sätt upp routern
 const router = express.Router();
 // Inkluderar modellen för kurser
-const Book = require("../../models/books_schema");
+const Book = require("../../models/Book");
 
 // Gör webbtjänsten tillgänlig från samtliga domäner
 router.all('/*', (req, res, next) => {
@@ -34,7 +34,6 @@ router.get('/', async (req, res) => {
 router.get('/user/', async (req, res) => {
     // Plockar fram användaren och sparar i variabel
     let getUser = req.query.name;
-    console.log(getUser);
     // Hämtar anslutningsvägen
     const books = await loadBooksCollection();
     books.find({ user: getUser }, async (err) => {
@@ -139,7 +138,6 @@ async function loadBooksCollection() {
     // Skickar tillbaka sökvägen plus rätt databas och collection
     return client.db("books").collection("books");
 }
-
 
 // Exporterar routern
 module.exports = router;

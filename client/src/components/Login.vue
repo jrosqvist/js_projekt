@@ -1,15 +1,22 @@
 <template>
   <div class="container">
-       <!-- Inloggningsformuläret -->
+    <!-- Inloggningsformuläret -->
     <form v-on:submit.prevent="login">
       <h2>Logga in här</h2>
+      <p class="loginError" v-if="loginError">{{loginError}}</p>
       <label for="email">E-postadress</label>
       <br />
-      <input type="email" v-model="email" name="email" placeholder="Ange din e-postadress" />
+      <input type="email" v-model="email" name="email" placeholder="Ange din e-postadress" required />
       <br />
       <label for="password">Lösenord</label>
       <br />
-      <input type="password" v-model="password" name="password" placeholder="Ange lösenord" />
+      <input
+        type="password"
+        v-model="password"
+        name="password"
+        placeholder="Ange lösenord"
+        required
+      />
       <br />
       <button type="submit">Logga in</button>
     </form>
@@ -26,7 +33,8 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      loginError: ""
     };
   },
   methods: {
@@ -49,14 +57,16 @@ export default {
             //this.emitMethod();
             location.reload();
           } else {
-            alert("Felaktiga inloggningsuppgifter");
+            this.loginError = "Felaktiga inloggningsuppgifter!";
+            //alert("Felaktiga inloggningsuppgifter");
           }
         })
         .catch(err => {
-          console.log(err);
-          alert("Felaktiga inloggningsuppgifter");
+          // console.log(err);
+          this.loginError = "Felaktiga inloggningsuppgifter!";
+          // alert("Felaktiga inloggningsuppgifter");
         });
-    },
+    }
     /*
     emitMethod() {
       Events.$emit("logged-in", "loggedin");
@@ -67,5 +77,11 @@ export default {
 </script>
 
 <style scoped>
-
+.loginError {
+  background-color: rgb(242, 91, 91);
+  padding: 15px;
+  color: white;
+  border-radius: 5px;
+  margin: 1% 0;
+}
 </style>

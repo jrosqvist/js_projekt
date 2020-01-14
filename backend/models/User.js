@@ -22,7 +22,6 @@ const UserSchema = new Schema({
     }
 })
 
-
 // Skapar modell
 // När en användare skapas hamnar den i collectionet users och baseras på användar-chemat
 const User = mongoose.model("users", UserSchema);

@@ -2,18 +2,24 @@
   <div class="container">
     <!-- Registreringsformuläret -->
     <form v-on:submit.prevent="register">
-      <h2>Registrera</h2>
+      <h2>Registrera konto här</h2>
       <label for="username">Användarnamn</label>
       <br />
-      <input type="text" v-model="username" name="username" placeholder="Användarnamn" />
+      <input type="text" v-model="username" name="username" placeholder="Användarnamn" required />
       <br />
       <label for="email">E-postadress</label>
       <br />
-      <input type="email" v-model="email" name="email" placeholder="Ange din e-postadress" />
+      <input type="email" v-model="email" name="email" placeholder="Ange din e-postadress" required />
       <br />
       <label for="password">Lösenord</label>
       <br />
-      <input type="password" v-model="password" name="password" placeholder="Ange lösenord" />
+      <input
+        type="password"
+        v-model="password"
+        name="password"
+        placeholder="Ange lösenord"
+        required
+      />
       <button type="submit">Registrera</button>
     </form>
   </div>
@@ -36,7 +42,7 @@ export default {
     // Registrera anvöndare
     register() {
       axios
-      // Skicka med inmatad data
+        // Skicka med inmatad data
         .post("users/register", {
           username: this.username,
           email: this.email,
@@ -55,5 +61,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

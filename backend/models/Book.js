@@ -23,12 +23,9 @@ let bookSchema = new Schema({
         default: 0
     },
     user: {
-            type: String,
-            ref: "user"
-
+        type: String,
+        ref: "user"
     }
-
-
 });
 
 // Skapar modell

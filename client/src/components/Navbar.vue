@@ -3,7 +3,7 @@
   <header id="mainheader">
     <div id="logo-container">
       <a href="#home">
-        <h2>Bokklubben</h2>
+        <h2>Biblioteket</h2>
       </a>
     </div>
     <!-- Mobilmenyn -->
@@ -26,10 +26,10 @@
           <router-link to="/login">Logga in</router-link>
         </li>
         <li v-if="log==true">
-          <router-link to="/posts">Poster</router-link>
+          <router-link to="/posts">Böcker</router-link>
         </li>
         <li v-if="log==true">
-          <router-link to="/profile">Profil</router-link>
+          <router-link to="/profile">Mina sidor</router-link>
         </li>
         <li v-if="log==true">
           <a href v-on:click="logout">Logga ut</a>
@@ -103,16 +103,20 @@ export default {
   width: 100%;
   top: 0;
   z-index: 999;
-  background-color: rgb(84, 42, 210);
+  background-color: rgb(38, 38, 38);
 }
 #mainheader h2 {
-  font-size: 22px;
-  line-height: 50px;
-  font-style: italic;
-  color: #fff;
+  font-size: 24px;
+  line-height: 55px;
   float: left;
   padding-left: 20px;
-  color: white;
+  color: rgb(255, 255, 255);
+  font-family: "Luckiest Guy", cursive;
+  /*
+  font-family: 'Bangers', cursive;
+  font-family: 'Gochi Hand', cursive;
+  */
+  letter-spacing: 0.5px;
 }
 
 #mainheader h2:hover {
@@ -127,11 +131,11 @@ export default {
   float: left;
   display: block;
   list-style-type: none;
-  line-height: 50px;
+  line-height: 49px;
   color: white;
 }
 #main-nav ul li:hover {
-  background-color: aquamarine;
+  background-color: rgb(2, 189, 92);
 }
 #main-nav ul li a {
   color: white;
@@ -139,6 +143,7 @@ export default {
   font-weight: bold;
   font-size: 16px;
   padding: 12px 20px;
+  font-family: "Baloo Bhai", cursive;
 }
 /* Mobilmenyn döljs som standard */
 #mobiler-container {

@@ -40,7 +40,7 @@ users.post("/register", async (req, res) => {
                     // Lägger in datat med hashat lösen
                     users.insertOne(userData)
                         .then(user => {
-                            res.json({ status: req.body.email + ' registrerad' })
+                            res.json({ status: req.body.username + ' registrerad' })
                         })
                         .catch(err => {
                             res.send('error: ' + err)
@@ -78,11 +78,11 @@ users.post('/login', async (req, res) => {
                     res.send(token)
                 } else {
                     //res.json({ error: 'Användaren finns inte' })
-                    res.status(404).send({error: 'Användaren finns inte' });
+                    res.status(404).send({ error: 'Användaren finns inte' });
                 }
             } else {
                 //res.json({ error: 'Användaren finns inte' })
-                res.status(404).send({error: 'Användaren finns inte' });
+                res.status(404).send({ error: 'Användaren finns inte' });
             }
         })
         .catch(err => {

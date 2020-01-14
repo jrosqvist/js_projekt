@@ -1,12 +1,15 @@
 
 <template>
   <div class="container">
-    <h2>Mina uppgifter</h2>
-    <p>Användarnamn: {{username}}</p>
-    <p>E-postadress: {{email}}</p>
+    <div class="user-information">
+      <h2>Mina uppgifter</h2>
+      <p>Användarnamn: {{username}}</p>
+      <p>E-postadress: {{email}}</p>
+    </div>
 
     <!-- Uppdateringsformuläret (döljs som standard) -->
     <form id="update-form">
+      <div class="cross" v-on:click="closeUpdateForm">x</div>
       <h2>Uppdatera bok</h2>
       <label for="update-id">ID</label>
       <br />
@@ -53,8 +56,6 @@
           <p class="author">Författare: {{ubook.author}}</p>
           <p class="published">Publiceringsår: {{ubook.published}}</p>
           <p class="pages">Antal sidor: {{ubook.pages}}</p>
-          <p class="user">Tillagd av: {{ubook.user}}</p>
-          <p class="user">ID {{ubook._id}}</p>
           <button class="delete-button" v-on:click="deleteBook(ubook._id)">Radera</button>
           <button
             class="update-button"
@@ -149,6 +150,9 @@ export default {
       // Hämta böckerna igen
       this.ubooks = await BookService.getBooksByUser();
       location.reload();
+    },
+    closeUpdateForm() {
+      document.getElementById("update-form").style.display = "none";
     }
   },
   // Skickar tillbaka till inloggnings-sidan om token inte finns
@@ -168,8 +172,22 @@ export default {
 .container h1 {
   text-align: center;
 }
+.user-information {
+  background-color: rgb(109, 109, 109);
+  color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  width: 50%;
+  margin: 1% 22.5%;
+  padding: 2.5%;
+  border-radius: 10px;
+}
+.user-books h2 {
+  text-align: center;
+  margin-top: 50px;
+}
 .book {
-  background-color: aquamarine;
+  background-color: rgb(237, 237, 237);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   width: 50%;
   margin: 1% 22.5%;
   padding: 2.5%;
@@ -179,27 +197,29 @@ export default {
   border: none;
   border-radius: 5px;
   width: 25%;
-  margin: 2.5% 37.5%;
+  margin: 2.5% 72.5% 2.5% 2.5%;
   padding: 5px;
-  background-color: rgb(242, 91, 91);
+  background-color: rgb(228, 73, 73);
   color: white;
+  font-family: "Baloo Bhai", cursive;
 }
 .delete-button:hover {
   cursor: pointer;
-  background-color: rgb(218, 65, 65);
+  background-color: rgb(206, 39, 39);
 }
 .update-button {
   border: none;
   border-radius: 5px;
   width: 25%;
-  margin: 2.5% 37.5%;
+  margin: 2.5% 72.5% 2.5% 2.5%;
   padding: 5px;
-  background-color: rgb(192, 199, 50);
+  background-color: rgb(1, 153, 208);
   color: white;
+  font-family: "Baloo Bhai", cursive;
 }
 .update-button:hover {
   cursor: pointer;
-  background-color: rgb(190, 198, 30);
+  background-color: rgb(12, 92, 211);
 }
 
 .error {
@@ -213,7 +233,8 @@ export default {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border-radius: 10px;
   padding: 50px;
-  width: 100vh;
+  width: 75vh;
+  height: 75vh;
   top: 50px;
   z-index: 9999;
   margin-left: auto;
@@ -221,5 +242,26 @@ export default {
   left: 0;
   right: 0;
   display: none;
+}
+.cross {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: rgb(228, 73, 73);
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.cross:hover {
+  cursor: pointer;
+  color: rgb(242, 91, 91);
+}
+#update-form input {
+  padding: 1.5%;
+}
+#update-form h2 {
+  margin: 0;
+  padding: 0;
 }
 </style>
