@@ -20,7 +20,7 @@ router.all('/*', (req, res, next) => {
 router.get('/', async (req, res) => {
     const books = await loadBooksCollection();
     // Hittar och returnerar böckerna i en array
-    books.find( async (err) => {
+    books.find(async (err) => {
         if (err) {
             res.send(err);
             console.log(err);
@@ -30,6 +30,23 @@ router.get('/', async (req, res) => {
     });
 });
 
+// Hämtar bok från specifik användare
+router.get('/user/', async (req, res) => {
+    // Plockar fram användaren och sparar i variabel
+    let getUser = req.query.name;
+    console.log(getUser);
+    // Hämtar anslutningsvägen
+    const books = await loadBooksCollection();
+    books.find({ user: getUser }, async (err) => {
+        if (err) {
+            res.send(err);
+            console.log(err);
+        } else {
+            res.send(await books.find({ "user": getUser }).toArray());
+        }
+    });
+})
+
 
 // Hämtar en bok
 router.get('/:id', async (req, res) => {
@@ -37,12 +54,12 @@ router.get('/:id', async (req, res) => {
     let getId = new mongodb.ObjectID(req.params.id);
     // Hämtar anslutningsvägen
     const books = await loadBooksCollection();
-    books.find({_id: getId }, async (err) => {
+    books.find({ _id: getId }, async (err) => {
         if (err) {
             res.send(err);
             console.log(err);
         } else {
-            res.send(await books.find({_id: getId }).toArray());
+            res.send(await books.find({ _id: getId }).toArray());
         }
     });
 })
@@ -54,7 +71,8 @@ router.post("/", async (req, res) => {
         title: req.body.title,
         author: req.body.author,
         published: req.body.published,
-        pages: req.body.pages
+        pages: req.body.pages,
+        user: req.body.user
     });
     // Hämtar anslutningen
     const books = await loadBooksCollection();

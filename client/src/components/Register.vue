@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!-- Registreringsformuläret -->
     <form v-on:submit.prevent="register">
       <h2>Registrera</h2>
       <label for="username">Användarnamn</label>
@@ -19,7 +20,9 @@
 </template>
 
 <script>
+// För åtkomst till webbtjänsten
 import axios from "axios";
+// För omdirigering
 import router from "../router";
 export default {
   data() {
@@ -30,14 +33,17 @@ export default {
     };
   },
   methods: {
+    // Registrera anvöndare
     register() {
       axios
+      // Skicka med inmatad data
         .post("users/register", {
           username: this.username,
           email: this.email,
           password: this.password
         })
         .then(res => {
+          // Skicka till logga in-sidan om det gick som de skulle
           router.push({ name: "Login" });
         })
         .catch(err => {

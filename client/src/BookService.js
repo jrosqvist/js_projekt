@@ -1,10 +1,11 @@
-import axios from "axios";
 
+import axios from "axios";
 const url = "/api/books/";
 
+// Klass med statiska metoder som hanterar böckerna
 class BookService {
-    // Klassmetoder
-    // Hämta böcker
+
+    // Hämta alla böcker
     static getBooks() {
         return new Promise(async (resolve, reject) => {
             try {
@@ -23,21 +24,41 @@ class BookService {
         });
     }
 
-    // Skapa 
-    static addBook(title, author, published, pages) {
+    // Hämtar böcker från specifik användare
+    static getBooksByUser(user) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const res = await axios.get(`${url}user/?name=` + user);
+                const data = res.data;
+                resolve(
+                    // Loopar igenom datat
+                    data.map(ubook => ({
+                        // Spread
+                        ...ubook
+                    }))
+                );
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+
+    // Lägg till bok
+    static addBook(title, author, published, pages, user) {
         return axios.post(url, {
             title,
             author,
             published,
-            pages
+            pages,
+            user
         });
     }
-    // Radera
+    // Radera bok med id:t
     static deleteBook(id) {
         return axios.delete(`${url}${id}`);
     }
 
-    // Uppdatera
+    // Uppdatera bok
     static updateBook(id, title, author, published, pages) {
         return axios.put(`${url}${id}`, {
             title,
@@ -48,5 +69,5 @@ class BookService {
     }
 }
 
-
+// Exportera
 export default BookService;

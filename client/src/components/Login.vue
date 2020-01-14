@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+       <!-- Inloggningsformuläret -->
     <form v-on:submit.prevent="login">
       <h2>Logga in här</h2>
       <label for="email">E-postadress</label>
@@ -16,9 +17,11 @@
 </template>
 
 <script>
+// Axios för anslutning mot webbtjänsten
 import axios from "axios";
+// Router för omdirigering
 import router from "../router";
-import Events from "./Events";
+//import Events from "./Events";
 export default {
   data() {
     return {
@@ -27,6 +30,7 @@ export default {
     };
   },
   methods: {
+    // Logga in
     login() {
       axios
         .post("users/login", {
@@ -34,13 +38,15 @@ export default {
           password: this.password
         })
         .then(res => {
+          // Skapa en token med returnerad data
           localStorage.setItem("usertoken", res.data);
           // Tömmer formuläret
           this.email = "";
           this.password = "";
+          // Loggar in och skickar till mina sidor-sidan
           if (res.status != 404) {
             router.push({ name: "Profile" });
-            this.emitMethod();
+            //this.emitMethod();
             location.reload();
           } else {
             alert("Felaktiga inloggningsuppgifter");
@@ -51,9 +57,11 @@ export default {
           alert("Felaktiga inloggningsuppgifter");
         });
     },
+    /*
     emitMethod() {
       Events.$emit("logged-in", "loggedin");
     }
+    */
   }
 };
 </script>

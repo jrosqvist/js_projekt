@@ -1,10 +1,12 @@
 <template>
+  <!-- Huvudmenyn -->
   <header id="mainheader">
     <div id="logo-container">
       <a href="#home">
         <h2>Bokklubben</h2>
       </a>
     </div>
+    <!-- Mobilmenyn -->
     <div id="mobile-container">
       <div id="mobile-menu" v-on:click="toggleMenu">
         <span>&nbsp;</span>
@@ -40,11 +42,9 @@
 
 
 <script>
-import Events from "./Events";
+// Importerar events-komponenten
+//import Events from "./Events";
 
-Events.$on("logged-in", test => {
-  console.log(test);
-});
 export default {
   data() {
     return {
@@ -53,13 +53,16 @@ export default {
     };
   },
   methods: {
+    // Logga ut
     logout() {
+      // Tar bort token
       localStorage.removeItem("usertoken");
-      this.out = "loggedout";
     },
+    /*
     emitMethod() {
       Events.$emit("logged-in", "loggedin");
     },
+    */
     toggleMenu() {
       $("#mobile-menu").toggleClass("open");
       $("#main-nav ul").toggleClass("open");
@@ -71,25 +74,29 @@ export default {
       }
     }
   },
+  /*
   mounted() {
     Events.$on("logged-in", status => {
       this.auth = status;
     });
   },
+  */
   beforeCreate() {
+    // Kollar om token finns
     const token = localStorage.usertoken;
     if (!token) {
+      // Dölj menyvalen för inloggad
       this.log = false;
     } else {
+      // Dölj menyvalen för utloggad
       this.log = true;
     }
   }
 };
 </script>
 
-
-
 <style scoped>
+/* Huvudmeny */
 #mainheader {
   height: 50px;
   position: fixed;
@@ -133,7 +140,7 @@ export default {
   font-size: 16px;
   padding: 12px 20px;
 }
-
+/* Mobilmenyn döljs som standard */
 #mobiler-container {
   display: none;
 }
@@ -141,7 +148,9 @@ export default {
   display: none;
 }
 
+/* Media queries */
 @media (max-width: 800px) {
+  /* Ändrar utseende på menyn */
   #main-nav {
     z-index: 999;
     position: relative;
@@ -159,7 +168,7 @@ export default {
     display: none;
   }
   #main-nav ul li {
-background-color: rgb(84, 42, 210);
+    background-color: rgb(84, 42, 210);
     float: none;
     width: 100%;
     display: block;
@@ -169,7 +178,7 @@ background-color: rgb(84, 42, 210);
   ul li:nth-child(1) {
     border-top: 2px solid white;
   }
-
+  /* Menyn öppnad */
   #main-nav ul.open {
     display: block;
     margin-top: 50px;
@@ -187,7 +196,7 @@ background-color: rgb(84, 42, 210);
     cursor: pointer;
     display: block;
   }
-
+  /* Mobilmeny-knappen */
   #mobile-menu span {
     background: white;
     display: block;
@@ -199,7 +208,7 @@ background-color: rgb(84, 42, 210);
     transition: all ease-in-out 0.2s;
     border-radius: 5px;
   }
-
+  /* Gör om menyikonen till ett kryss */
   #mobile-menu.open span:nth-child(2) {
     width: 0;
     opacity: 0;
