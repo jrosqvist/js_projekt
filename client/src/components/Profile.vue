@@ -26,7 +26,7 @@
       <label for="update-published">Publiceringsår</label>
       <br />
       <input
-        type="text"
+        type="number"
         id="update-published"
         v-model="upublished"
         placeholder="Publiceringsår"
@@ -35,7 +35,7 @@
       <br />
       <label for="update-pages">Antal sidor</label>
       <br />
-      <input type="text" id="update-pages" v-model="upages" placeholder="Antal sidor" required />
+      <input type="number" id="update-pages" v-model="upages" placeholder="Antal sidor" required />
       <br />
       <button v-on:click="updateBook">Uppdatera bok</button>
     </form>
