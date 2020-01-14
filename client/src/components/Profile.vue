@@ -1,19 +1,12 @@
 
 <template>
   <div class="container">
-    <h1 class="text-center">Profil</h1>
-    <table>
-      <tbody>
-        <tr>
-          <td>Användarnamn</td>
-          <td>{{username}}</td>
-        </tr>
-        <tr>
-          <td>Email</td>
-          <td>{{email}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <h2>Profil</h2>
+
+          <p>Användarnamn: {{username}}</p>
+
+          <p>E-postadress: {{email}}</p>
+
   </div>
 </template>
 
@@ -26,7 +19,6 @@ export default {
     const token = localStorage.usertoken;
     if (token) {
       const decoded = jwtDecode(token);
-      console.log(token);
       return {
         username: decoded.username,
         email: decoded.email
@@ -47,3 +39,7 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+ 
+</style>

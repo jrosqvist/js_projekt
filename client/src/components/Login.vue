@@ -1,11 +1,15 @@
 <template>
   <div class="container">
     <form v-on:submit.prevent="login">
-      <h1>Logga in här</h1>
+      <h2>Logga in här</h2>
       <label for="email">E-postadress</label>
+      <br />
       <input type="email" v-model="email" name="email" placeholder="Ange din e-postadress" />
+      <br />
       <label for="password">Lösenord</label>
+      <br />
       <input type="password" v-model="password" name="password" placeholder="Ange lösenord" />
+      <br />
       <button type="submit">Logga in</button>
     </form>
   </div>
@@ -39,12 +43,12 @@ export default {
             this.emitMethod();
             location.reload();
           } else {
-            alert("Felaktiga inloggningsuppgifter")
+            alert("Felaktiga inloggningsuppgifter");
           }
         })
         .catch(err => {
           console.log(err);
-           alert("Felaktiga inloggningsuppgifter")
+          alert("Felaktiga inloggningsuppgifter");
         });
     },
     emitMethod() {
@@ -53,3 +57,7 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+</style>

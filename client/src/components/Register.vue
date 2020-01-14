@@ -1,23 +1,18 @@
 <template>
   <div class="container">
     <form v-on:submit.prevent="register">
-      <h1>Register</h1>
+      <h2>Registrera</h2>
       <label for="username">Användarnamn</label>
+      <br />
       <input type="text" v-model="username" name="username" placeholder="Användarnamn" />
+      <br />
       <label for="email">E-postadress</label>
-      <input
-        type="email"
-        v-model="email"
-        name="email"
-        placeholder="Ange din e-postadress"
-      />
+      <br />
+      <input type="email" v-model="email" name="email" placeholder="Ange din e-postadress" />
+      <br />
       <label for="password">Lösenord</label>
-      <input
-        type="password"
-        v-model="password"
-        name="password"
-        placeholder="Ange lösenord"
-      />
+      <br />
+      <input type="password" v-model="password" name="password" placeholder="Ange lösenord" />
       <button type="submit">Registrera</button>
     </form>
   </div>
@@ -52,3 +47,7 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+</style>

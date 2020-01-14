@@ -6,15 +6,19 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
-    // Paths
+    // Sökvägar
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       "/users": {
         target: "http://localhost:3000",
         changeOrigin: true
+      },
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true
       }
+      
     },
 
     // Various Dev Server settings
