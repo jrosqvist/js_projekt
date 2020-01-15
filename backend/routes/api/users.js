@@ -77,11 +77,9 @@ users.post('/login', async (req, res) => {
                     })
                     res.send(token)
                 } else {
-                    //res.json({ error: 'Användaren finns inte' })
                     res.status(404).send({ error: 'Användaren finns inte' });
                 }
             } else {
-                //res.json({ error: 'Användaren finns inte' })
                 res.status(404).send({ error: 'Användaren finns inte' });
             }
         })

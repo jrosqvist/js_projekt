@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div id="image-container">
-      <img id="home-img" src="../assets/background.jpg" alt="Bild på ett bibliotek inifrån" />
+
     </div>
     <div id="banner-text">
       <h1>
@@ -48,17 +48,15 @@ p {
 }
 /* Banner-bilden och text */
 #image-container {
-  position: relative;
+  border-radius: 10px;
+  background-image:url("../assets/background.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  height:400px;
+  width:100%;
 }
 #banner-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 2;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.955);
   padding: 25px;
-  border-radius: 10px;
 }
 #banner-text h1 {
   font-size: 30px;
@@ -80,10 +78,6 @@ p {
   font-family: "Luckiest Guy", cursive;
   letter-spacing: 0.5px;
 }
-#home-img {
-  width: 100%;
-  border-radius: 2.5px;
-}
 
 /* Media queries */
 @media (max-width: 800px) {
@@ -96,11 +90,6 @@ p {
   #banner-text p {
     font-size: 14px;
   }
-  #banner-text {
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -25%);
-  }
 }
 
 @media (max-width: 550px) {
@@ -112,12 +101,6 @@ p {
   }
   #banner-text p {
     font-size: 16px;
-  }
-  #banner-text {
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -20%);
-    padding: 15px;
   }
 }
 </style>

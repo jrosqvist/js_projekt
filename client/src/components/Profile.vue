@@ -219,6 +219,7 @@ export default {
   margin: 1% 22.5%;
   padding: 2.5%;
   border-radius: 10px;
+  text-align:center;
 }
 .user-books h2 {
   text-align: center;
@@ -274,12 +275,12 @@ export default {
 /* Uppdateringsformuläret - dolt som standard */
 #update-form {
   display: none;
-  position: fixed;
+    position:absolute;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border-radius: 10px;
   padding: 50px;
   width: 75vh;
-  height: 75vh;
+  height: auto;
   top: 50px;
   z-index: 9999;
   margin-left: auto;
@@ -395,8 +396,7 @@ button:disabled {
   }
   #update-form {
     padding: 25px;
-    width: 75vh;
-    height: 75vh;
+    width: auto;
   }
 }
 
@@ -412,9 +412,8 @@ button:disabled {
     padding: 2.5%;
   }
   #update-form {
-    padding: 15px;
-    width: 65vh;
-    height: 75vh;
+    padding: 20px;
+    width: auto;
   }
 }
 </style>

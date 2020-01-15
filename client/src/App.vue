@@ -75,8 +75,8 @@ form label {
 form button {
   border: none;
   border-radius: 5px;
-  width: 25%;
-  margin: 2.5% 37.5%;
+  width: 35%;
+  margin: 2.5% 32.5%;
   padding: 10px;
   background-color: rgb(2, 189, 92);
   color: white;
@@ -94,6 +94,10 @@ form button:hover {
     margin: 0 10%;
     padding: 2.5%;
   }
+  form button {
+    width: 40%;
+    margin: 2.5% 30%;
+  }
 }
 
 @media (max-width: 550px) {
@@ -101,6 +105,10 @@ form button:hover {
     width: 85%;
     margin: 0 5%;
     padding: 2.5%;
+  }
+  form button {
+    width: 50%;
+    margin: 2.5% 25%;
   }
 }
 </style>

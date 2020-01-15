@@ -55,12 +55,9 @@ export default {
           if (res.status != 404) {
             router.push({ name: "Profile" });
             location.reload();
-          } else {
-            this.loginError = "Felaktiga inloggningsuppgifter!";
           }
         })
         .catch(err => {
-          console.log(err);
           this.loginError = "Felaktiga inloggningsuppgifter!";
         });
     }
