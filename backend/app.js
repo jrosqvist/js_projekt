@@ -36,7 +36,7 @@ app.use("/api/books", books);
 
 // Hanterar utvecklingen
     // Statisk katalog
-    app.use(express.static(__dirname + "../client/dist/"));
+    app.use(express.static(__dirname + "../client/dist/static"));
     // HAntera singe page applikationen
     // .* refererar till alla routes
     app.get(/.*/, (req, res) => {
