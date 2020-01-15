@@ -86,10 +86,12 @@ export default {
 </script>
 
 <style scoped>
+/* Dold knapp*/
 button:disabled {
   background-color: rgb(160, 160, 160);
   cursor: default;
 }
+/* Felmeddelande som visas vid fel i registrering */
 .registerError {
   background-color: rgb(242, 91, 91);
   padding: 15px;

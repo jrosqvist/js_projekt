@@ -16,6 +16,7 @@ export default {
 </script>
 
 <style>
+/* Hela sidan */
 * {
   margin: 0;
   padding: 0;
@@ -47,7 +48,7 @@ label {
   background-color: rgb(245, 245, 245);
   min-height: 100vh;
 }
-
+/* Formulär */
 form {
   background-color: rgb(237, 237, 237);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);

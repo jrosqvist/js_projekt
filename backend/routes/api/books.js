@@ -38,8 +38,8 @@ router.get('/user/', async (req, res) => {
     const books = await loadBooksCollection();
     books.find({ user: getUser }, async (err) => {
         if (err) {
-            res.send(err);
-            console.log(err);
+           res.send(err);
+           console.log(err);
         } else {
             res.send(await books.find({ "user": getUser }).toArray());
         }

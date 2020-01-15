@@ -42,9 +42,6 @@
 
 
 <script>
-// Importerar events-komponenten
-//import Events from "./Events";
-
 export default {
   data() {
     return {
@@ -58,11 +55,6 @@ export default {
       // Tar bort token
       localStorage.removeItem("usertoken");
     },
-    /*
-    emitMethod() {
-      Events.$emit("logged-in", "loggedin");
-    },
-    */
     toggleMenu() {
       $("#mobile-menu").toggleClass("open");
       $("#main-nav ul").toggleClass("open");
@@ -74,13 +66,6 @@ export default {
       }
     }
   },
-  /*
-  mounted() {
-    Events.$on("logged-in", status => {
-      this.auth = status;
-    });
-  },
-  */
   beforeCreate() {
     // Kollar om token finns
     const token = localStorage.usertoken;
@@ -112,10 +97,6 @@ export default {
   padding-left: 20px;
   color: rgb(255, 255, 255);
   font-family: "Luckiest Guy", cursive;
-  /*
-  font-family: 'Bangers', cursive;
-  font-family: 'Gochi Hand', cursive;
-  */
   letter-spacing: 0.5px;
 }
 

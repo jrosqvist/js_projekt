@@ -69,6 +69,7 @@ export default {
 </script>
 
 <style scoped>
+/* Felmeddelande */
 .loginError {
   background-color: rgb(242, 91, 91);
   padding: 15px;
@@ -78,6 +79,7 @@ export default {
   text-align: center;
   font-family: "Baloo Bhai", cursive;
 }
+/* Dold knapp */
 button:disabled {
   background-color: rgb(160, 160, 160);
   cursor: default;

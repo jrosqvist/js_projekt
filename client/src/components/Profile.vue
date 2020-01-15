@@ -40,7 +40,7 @@
         <br />
         <button
           v-on:click="updateBook(); showUpdatedDiv();"
-          :disabled="!utitle.trim() || !uauthor.trim() || !upublished.trim() || !upages.trim()"
+          :disabled="!utitle.trim() || !uauthor.trim() || !upublished || !upages"
         >Uppdatera bok</button>
       </form>
 
@@ -73,10 +73,10 @@
       </div>
     </div>
     <div id="updated-div">
-      <p>Bok uppdaterad!</p>
+      <p>Boken uppdateras!</p>
     </div>
     <div id="deleted-div">
-      <p>Bok raderad!</p>
+      <p>Boken raderas!</p>
     </div>
   </div>
 </template>
@@ -203,12 +203,14 @@ export default {
 </script>
 
 <style scoped>
+/* Sidinnehåll */
 .container {
   padding: 2.5%;
 }
 .container h1 {
   text-align: center;
 }
+/* Medlemsuppgifter */
 .user-information {
   background-color: rgb(109, 109, 109);
   color: white;
@@ -222,6 +224,7 @@ export default {
   text-align: center;
   margin-top: 50px;
 }
+/* Användarens böcker */
 .book {
   background-color: rgb(237, 237, 237);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -258,7 +261,7 @@ export default {
   cursor: pointer;
   background-color: rgb(12, 92, 211);
 }
-
+/* Visas om inga böcker finns publicerade från användaren */
 .message {
   background-color: rgb(1, 153, 208);
   padding: 15px;
@@ -268,6 +271,7 @@ export default {
   text-align: center;
   font-family: "Baloo Bhai", cursive;
 }
+/* Uppdateringsformuläret - dolt som standard */
 #update-form {
   display: none;
   position: fixed;
@@ -284,6 +288,7 @@ export default {
   right: 0;
   display: none;
 }
+/* Krysset som stänget uppdateringsformuläret */
 .cross {
   position: absolute;
   top: 10px;
@@ -305,10 +310,12 @@ export default {
   margin: 0;
   padding: 0;
 }
+/* Dold knapp */
 button:disabled {
   background-color: rgb(160, 160, 160);
   cursor: default;
 }
+/* Divarna som poppar upp vid uppdatering eller borttagning av bok */
 #updated-div,
 #deleted-div {
   height: 50px;
@@ -335,12 +342,14 @@ button:disabled {
 #deleted-div {
   background-color: rgb(228, 73, 73);
 }
+/* Klassen on genereras vid uppdaterad eller raderad bok */
 .on {
   animation-name: popUp;
   animation-duration: 3s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
+/* Animation för radera- och uppdatera-divarna */
 @keyframes popUp {
   0% {
     bottom: -50px;

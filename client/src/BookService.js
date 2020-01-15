@@ -1,4 +1,4 @@
-
+// Axios används för att kommunicera med webbtjänsten
 import axios from "axios";
 const url = "/api/books/";
 

@@ -55,7 +55,7 @@
       </div>
     </div>
     <div id="added-div">
-      <p>Bok tillagd!</p>
+      <p>Din bok läggs till!</p>
     </div>
   </div>
 </template>
@@ -142,6 +142,7 @@ export default {
 </script>
 
 <style scoped>
+/* Sidinnehållet */
 .container {
   padding: 2.5%;
 }
@@ -151,10 +152,12 @@ export default {
 #add-form {
   margin-bottom: 50px;
 }
+/* Dold knapp */
 button:disabled {
- background-color: rgb(160, 160, 160);
+  background-color: rgb(160, 160, 160);
   cursor: default;
 }
+/* Bok-elementen */
 .book {
   background-color: rgb(1, 153, 208);
   color: white;
@@ -168,17 +171,17 @@ button:disabled {
   background-color: rgb(237, 237, 237);
   color: black;
 }
-
+/* Felmeddelande */
 .error {
   background-color: rgb(242, 91, 91);
   padding: 15px;
   color: white;
   border-radius: 5px;
   margin: 1% 0;
-  text-align:center;
+  text-align: center;
   font-family: "Baloo Bhai", cursive;
 }
-
+/* Diven som poppar upp vid tillagd bok */
 #added-div {
   height: 50px;
   width: 100%;
@@ -198,12 +201,14 @@ button:disabled {
   color: white;
   font-family: "Baloo Bhai", cursive;
 }
+/* Klassen on genereras vid publicerad bok */
 .on {
   animation-name: popUp;
   animation-duration: 3s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
+/* Animation för lägg-till-diven */
 @keyframes popUp {
   0% {
     bottom: -50px;
@@ -235,21 +240,20 @@ button:disabled {
   }
 }
 
-
 /* Media queries */
 @media (max-width: 800px) {
   .book {
-  width: 75%;
-  margin: 2.5% 10%;
-  padding: 2.5%;
-}
+    width: 75%;
+    margin: 2.5% 10%;
+    padding: 2.5%;
+  }
 }
 
 @media (max-width: 550px) {
   .book {
-  width: 90%;
-  margin: 2.5%;
-  padding: 2.5%;
-}
+    width: 90%;
+    margin: 2.5%;
+    padding: 2.5%;
+  }
 }
 </style>

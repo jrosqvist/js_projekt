@@ -10,13 +10,13 @@
       </h1>
       <p v-if="log==false">
         Vänligen
-        <router-link to="/login">logga in</router-link>eller
-        <router-link to="/register">registrera dig</router-link>för att kunna ta del av innehållet på webbplatsen
+        <router-link to="/login"> logga in </router-link>eller
+        <router-link to="/register"> registrera dig </router-link>för att kunna ta del av innehållet på webbplatsen
       </p>
       <p v-if="log==true">
         Läs och lägg till böcker
         <router-link to="/posts"> här </router-link>eller gå till mina sidor
-        <router-link to="/profile">här</router-link>
+        <router-link to="/profile"> här </router-link>
       </p>
     </div>
   </div>
@@ -39,12 +39,14 @@ export default {
 </script>
 
 <style scoped>
+/* Hela sidan */
 h1 {
   text-align: center;
 }
 p {
   text-align: center;
 }
+/* Banner-bilden och text */
 #image-container {
   position: relative;
 }
@@ -78,7 +80,6 @@ p {
   font-family: "Luckiest Guy", cursive;
   letter-spacing: 0.5px;
 }
-
 #home-img {
   width: 100%;
   border-radius: 2.5px;
@@ -96,10 +97,10 @@ p {
     font-size: 14px;
   }
   #banner-text {
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -25%);
-}
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+  }
 }
 
 @media (max-width: 550px) {
@@ -113,10 +114,10 @@ p {
     font-size: 16px;
   }
   #banner-text {
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -20%);
-  padding:15px;
-}
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    padding: 15px;
+  }
 }
 </style>
