@@ -234,4 +234,22 @@ button:disabled {
     opacity: 0;
   }
 }
+
+
+/* Media queries */
+@media (max-width: 800px) {
+  .book {
+  width: 75%;
+  margin: 2.5% 10%;
+  padding: 2.5%;
+}
+}
+
+@media (max-width: 550px) {
+  .book {
+  width: 90%;
+  margin: 2.5%;
+  padding: 2.5%;
+}
+}
 </style>

@@ -10,13 +10,13 @@
       </h1>
       <p v-if="log==false">
         Vänligen
-        <router-link to="/login"> logga in </router-link>eller
-        <router-link to="/register"> registrera dig </router-link>för att kunna ta del av innehållet på webbplatsen
+        <router-link to="/login">logga in</router-link>eller
+        <router-link to="/register">registrera dig</router-link>för att kunna ta del av innehållet på webbplatsen
       </p>
       <p v-if="log==true">
         Läs och lägg till böcker
         <router-link to="/posts"> här </router-link>eller gå till mina sidor
-        <router-link to="/profile"> här </router-link>
+        <router-link to="/profile">här</router-link>
       </p>
     </div>
   </div>
@@ -45,6 +45,9 @@ h1 {
 p {
   text-align: center;
 }
+#image-container {
+  position: relative;
+}
 #banner-text {
   position: absolute;
   top: 50%;
@@ -63,6 +66,7 @@ p {
   text-decoration: none;
   font-weight: bold;
   font-family: "Baloo Bhai", cursive;
+  font-size: 18px;
 }
 #banner-text a:hover {
   color: rgb(1, 184, 89);
@@ -74,11 +78,45 @@ p {
   font-family: "Luckiest Guy", cursive;
   letter-spacing: 0.5px;
 }
-#image-container {
-  position: relative;
-}
+
 #home-img {
   width: 100%;
   border-radius: 2.5px;
+}
+
+/* Media queries */
+@media (max-width: 800px) {
+  #banner-text h1 {
+    font-size: 24px;
+  }
+  #banner-text a {
+    font-size: 14px;
+  }
+  #banner-text p {
+    font-size: 14px;
+  }
+  #banner-text {
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+}
+}
+
+@media (max-width: 550px) {
+  #banner-text h1 {
+    font-size: 24px;
+  }
+  #banner-text a {
+    font-size: 16px;
+  }
+  #banner-text p {
+    font-size: 16px;
+  }
+  #banner-text {
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  padding:15px;
+}
 }
 </style>

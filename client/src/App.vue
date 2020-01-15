@@ -85,4 +85,21 @@ form button:hover {
   cursor: pointer;
   background-color: rgb(1, 184, 89);
 }
+
+/* Media queries */
+@media (max-width: 800px) {
+  form {
+    width: 75%;
+    margin: 0 10%;
+    padding: 2.5%;
+  }
+}
+
+@media (max-width: 550px) {
+  form {
+    width: 85%;
+    margin: 0 5%;
+    padding: 2.5%;
+  }
+}
 </style>

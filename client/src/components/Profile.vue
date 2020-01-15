@@ -371,4 +371,41 @@ button:disabled {
     opacity: 0;
   }
 }
+
+/* Media queries */
+@media (max-width: 800px) {
+  .user-information {
+    width: 75%;
+    margin: 2.5% 10%;
+    padding: 2.5%;
+  }
+  .book {
+    width: 75%;
+    margin: 2.5% 10%;
+    padding: 2.5%;
+  }
+  #update-form {
+    padding: 25px;
+    width: 75vh;
+    height: 75vh;
+  }
+}
+
+@media (max-width: 550px) {
+  .user-information {
+    width: 90%;
+    margin: 2.5%;
+    padding: 2.5%;
+  }
+  .book {
+    width: 90%;
+    margin: 2.5%;
+    padding: 2.5%;
+  }
+  #update-form {
+    padding: 15px;
+    width: 65vh;
+    height: 75vh;
+  }
+}
 </style>
