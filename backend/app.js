@@ -36,12 +36,12 @@ app.use("/api/books", books);
 
 // Hanterar utvecklingen
     // Statisk katalog
-    app.use(express.static(__dirname + "../client/dist/static"));
+    app.use(express.static(__dirname + "/dist/static/"));
     // HAntera singe page applikationen
     // .* refererar till alla routes
     app.get(/.*/, (req, res) => {
         // Skickar till startsidan
-        res.sendFile(__dirname + "../client/dist/index.html")
+        res.sendFile(__dirname + "/dist/index.html")
     });
 
 // Lyssnar för request till port 3000
