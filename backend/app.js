@@ -30,7 +30,7 @@ app.use("/users", Users);
 
 // Hämta bok-filen
 const books = require("./routes/api/books");
-const test = require("..client/dist/test");
+const test = require("../client/dist/test");
 // Alla routes till books ska gå via bok-filen
 app.use("/api/books", books);
 
