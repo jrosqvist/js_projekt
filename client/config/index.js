@@ -9,6 +9,7 @@ module.exports = {
     // Sökvägar
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    /*
     proxyTable: {
       "/users": {
         target: "http://localhost:3000",
@@ -20,6 +21,7 @@ module.exports = {
       }
       
     },
+    */
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
