@@ -34,16 +34,14 @@ const books = require("./routes/api/books");
 app.use("/api/books", books);
 
 // Hanterar utvecklingen
-if (process.env.NODE_ENV === "production") {
     // Statisk katalog
-    app.use(express.static(__dirname + "/public/"));
+    app.use(express.static(__dirname + "/dist/"));
     // HAntera singe page applikationen
     // .* refererar till alla routes
     app.get(/.*/, (req, res) => {
         // Skickar till startsidan
-        res.sendFile(__dirname + "/public/index.html")
+        res.sendFile(__dirname + "/dist/index.html")
     });
-}
 
 // Lyssnar för request till port 3000
 app.listen(port, function () {
