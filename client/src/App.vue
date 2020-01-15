@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <navbar></navbar>
-    <div id="content">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -38,7 +36,10 @@ a,
 label {
   font-family: "Mukta", sans-serif;
 }
-#content {
+.wrapper {
+  width: 100%;
+}
+.container {
   max-width: 960px;
   margin: 0 auto;
   margin-top: 50px;
@@ -46,6 +47,7 @@ label {
   background-color: rgb(245, 245, 245);
   min-height: 100vh;
 }
+
 form {
   background-color: rgb(237, 237, 237);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);

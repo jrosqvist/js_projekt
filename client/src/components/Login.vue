@@ -18,7 +18,7 @@
         required
       />
       <br />
-      <button type="submit">Logga in</button>
+      <button type="submit" :disabled="!email.trim().includes('@') || !password.trim()">Logga in</button>
     </form>
   </div>
 </template>
@@ -28,7 +28,7 @@
 import axios from "axios";
 // Router för omdirigering
 import router from "../router";
-//import Events from "./Events";
+
 export default {
   data() {
     return {
@@ -54,24 +54,16 @@ export default {
           // Loggar in och skickar till mina sidor-sidan
           if (res.status != 404) {
             router.push({ name: "Profile" });
-            //this.emitMethod();
             location.reload();
           } else {
             this.loginError = "Felaktiga inloggningsuppgifter!";
-            //alert("Felaktiga inloggningsuppgifter");
           }
         })
         .catch(err => {
-          // console.log(err);
+          console.log(err);
           this.loginError = "Felaktiga inloggningsuppgifter!";
-          // alert("Felaktiga inloggningsuppgifter");
         });
     }
-    /*
-    emitMethod() {
-      Events.$emit("logged-in", "loggedin");
-    }
-    */
   }
 };
 </script>
@@ -83,5 +75,11 @@ export default {
   color: white;
   border-radius: 5px;
   margin: 1% 0;
+  text-align: center;
+  font-family: "Baloo Bhai", cursive;
+}
+button:disabled {
+  background-color: rgb(160, 160, 160);
+  cursor: default;
 }
 </style>

@@ -32,7 +32,7 @@
           <router-link to="/profile">Mina sidor</router-link>
         </li>
         <li v-if="log==true">
-          <a href v-on:click="logout">Logga ut</a>
+          <a class="logout-link" href v-on:click="logout">Logga ut</a>
         </li>
       </ul>
     </nav>
@@ -137,6 +137,9 @@ export default {
 #main-nav ul li:hover {
   background-color: rgb(2, 189, 92);
 }
+#main-nav ul li:hover .logout-link {
+  background-color: rgb(228, 73, 73);
+}
 #main-nav ul li a {
   color: white;
   text-decoration: none;
@@ -144,6 +147,9 @@ export default {
   font-size: 16px;
   padding: 12px 20px;
   font-family: "Baloo Bhai", cursive;
+}
+#main-nav ul li a.router-link-exact-active {
+  background-color: rgb(2, 189, 92);
 }
 /* Mobilmenyn döljs som standard */
 #mobiler-container {
@@ -173,7 +179,7 @@ export default {
     display: none;
   }
   #main-nav ul li {
-    background-color: rgb(84, 42, 210);
+    background-color: rgb(38, 38, 38);
     float: none;
     width: 100%;
     display: block;
@@ -188,8 +194,8 @@ export default {
     display: block;
     margin-top: 50px;
   }
-  #main-nav ul.open li {
-    padding: 20px;
+  #main-nav ul.open li a {
+    padding: 30px;
   }
   #mobile-container {
     position: relative;

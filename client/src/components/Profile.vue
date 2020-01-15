@@ -1,68 +1,82 @@
 
 <template>
-  <div class="container">
-    <div class="user-information">
-      <h2>Mina uppgifter</h2>
-      <p>Användarnamn: {{username}}</p>
-      <p>E-postadress: {{email}}</p>
-    </div>
+  <div class="wrapper">
+    <div class="container">
+      <div class="user-information">
+        <h2>Mina uppgifter</h2>
+        <p>Användarnamn: {{username}}</p>
+        <p>E-postadress: {{email}}</p>
+      </div>
 
-    <!-- Uppdateringsformuläret (döljs som standard) -->
-    <form id="update-form">
-      <div class="cross" v-on:click="closeUpdateForm">x</div>
-      <h2>Uppdatera bok</h2>
-      <label for="update-id">ID</label>
-      <br />
-      <input type="text" id="update-id" v-model="uid" disabled />
-      <br />
-      <label for="update-title">Titel</label>
-      <br />
-      <input type="text" id="update-title" v-model="utitle" required />
-      <br />
-      <label for="update-author">Författare</label>
-      <br />
-      <input type="text" id="update-author" v-model="uauthor" required />
-      <br />
-      <label for="update-published">Publiceringsår</label>
-      <br />
-      <input
-        type="number"
-        id="update-published"
-        v-model="upublished"
-        placeholder="Publiceringsår"
-        required
-      />
-      <br />
-      <label for="update-pages">Antal sidor</label>
-      <br />
-      <input type="number" id="update-pages" v-model="upages" placeholder="Antal sidor" required />
-      <br />
-      <button v-on:click="updateBook">Uppdatera bok</button>
-    </form>
+      <!-- Uppdateringsformuläret (döljs som standard) -->
+      <form id="update-form">
+        <div class="cross" v-on:click="closeUpdateForm">x</div>
+        <h2>Uppdatera bok</h2>
+        <label for="update-id">ID</label>
+        <br />
+        <input type="text" id="update-id" v-model="uid" disabled />
+        <br />
+        <label for="update-title">Titel</label>
+        <br />
+        <input type="text" id="update-title" v-model="utitle" required />
+        <br />
+        <label for="update-author">Författare</label>
+        <br />
+        <input type="text" id="update-author" v-model="uauthor" required />
+        <br />
+        <label for="update-published">Publiceringsår</label>
+        <br />
+        <input
+          type="number"
+          id="update-published"
+          v-model="upublished"
+          placeholder="Publiceringsår"
+          required
+        />
+        <br />
+        <label for="update-pages">Antal sidor</label>
+        <br />
+        <input type="number" id="update-pages" v-model="upages" placeholder="Antal sidor" required />
+        <br />
+        <button
+          v-on:click="updateBook(); showUpdatedDiv();"
+          :disabled="!utitle.trim() || !uauthor.trim() || !upublished.trim() || !upages.trim()"
+        >Uppdatera bok</button>
+      </form>
 
-    <!-- Användarens inlägg -->
-    <div class="user-books">
-      <h2>Mina publicerade inlägg</h2>
-      <p class="error" v-if="uerror">{{uerror}}</p>
-      <div class="books-container">
-        <div
-          class="book"
-          v-for="(ubook, uindex) in ubooks"
-          v-bind:item="ubook"
-          v-bind:index="uindex"
-          v-bind:key="ubook._id"
-        >
-          <p class="title">Titel: {{ubook.title}}</p>
-          <p class="author">Författare: {{ubook.author}}</p>
-          <p class="published">Publiceringsår: {{ubook.published}}</p>
-          <p class="pages">Antal sidor: {{ubook.pages}}</p>
-          <button class="delete-button" v-on:click="deleteBook(ubook._id)">Radera</button>
-          <button
-            class="update-button"
-            v-on:click="showUpdateBox(ubook._id, ubook.title, ubook.author, ubook.published, ubook.pages)"
-          >Uppdatera</button>
+      <!-- Användarens inlägg -->
+      <div class="user-books">
+        <h2>Mina publicerade böcker</h2>
+        <p class="message" v-if="uerror">{{uerror}}</p>
+        <div class="books-container">
+          <div
+            class="book"
+            v-for="(ubook, uindex) in ubooks"
+            v-bind:item="ubook"
+            v-bind:index="uindex"
+            v-bind:key="ubook._id"
+          >
+            <p class="title">Titel: {{ubook.title}}</p>
+            <p class="author">Författare: {{ubook.author}}</p>
+            <p class="published">Publiceringsår: {{ubook.published}}</p>
+            <p class="pages">Antal sidor: {{ubook.pages}}</p>
+            <button
+              class="delete-button"
+              v-on:click="deleteBook(ubook._id); showDeletedDiv();"
+            >Radera</button>
+            <button
+              class="update-button"
+              v-on:click="showUpdateBox(ubook._id, ubook.title, ubook.author, ubook.published, ubook.pages)"
+            >Uppdatera</button>
+          </div>
         </div>
       </div>
+    </div>
+    <div id="updated-div">
+      <p>Bok uppdaterad!</p>
+    </div>
+    <div id="deleted-div">
+      <p>Bok raderad!</p>
     </div>
   </div>
 </template>
@@ -109,8 +123,11 @@ export default {
     try {
       // Hämtar användarens böcker
       this.ubooks = await BookService.getBooksByUser(this.username);
+      if (this.ubooks.length == 0) {
+        this.uerror = "Du har inga publicerade böcker";
+      }
     } catch (err) {
-      this.error = err.message;
+      console.log(err);
     }
   },
   methods: {
@@ -153,6 +170,26 @@ export default {
     },
     closeUpdateForm() {
       document.getElementById("update-form").style.display = "none";
+    },
+    showUpdatedDiv() {
+      let animationEvent =
+        "webkitAnimationEnd oanimationend msAnimationEnd animationend";
+      // Lägger till on-klassen
+      $("#updated-div").addClass("on");
+      // Tar bort klassen efter animationseventet är slut
+      $("#updated-div").one(animationEvent, function(event) {
+        $("#updated-div").removeClass("on");
+      });
+    },
+    showDeletedDiv() {
+      let animationEvent =
+        "webkitAnimationEnd oanimationend msAnimationEnd animationend";
+      // Lägger till on-klassen
+      $("#deleted-div").addClass("on");
+      // Tar bort klassen efter animationseventet är slut
+      $("#deleted-div").one(animationEvent, function(event) {
+        $("#deleted-div").removeClass("on");
+      });
     }
   },
   // Skickar tillbaka till inloggnings-sidan om token inte finns
@@ -222,10 +259,14 @@ export default {
   background-color: rgb(12, 92, 211);
 }
 
-.error {
-  background-color: rgb(242, 91, 91);
-  padding: 20px;
+.message {
+  background-color: rgb(1, 153, 208);
+  padding: 15px;
   color: white;
+  border-radius: 5px;
+  margin: 1% 0;
+  text-align: center;
+  font-family: "Baloo Bhai", cursive;
 }
 #update-form {
   display: none;
@@ -263,5 +304,71 @@ export default {
 #update-form h2 {
   margin: 0;
   padding: 0;
+}
+button:disabled {
+  background-color: rgb(160, 160, 160);
+  cursor: default;
+}
+#updated-div,
+#deleted-div {
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  opacity: 0;
+  margin: 0;
+}
+#updated-div p,
+#deleted-div p {
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+  font-size: 120%;
+  color: white;
+  font-family: "Baloo Bhai", cursive;
+}
+#updated-div {
+  background-color: rgb(1, 153, 208);
+}
+#deleted-div {
+  background-color: rgb(228, 73, 73);
+}
+.on {
+  animation-name: popUp;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes popUp {
+  0% {
+    bottom: -50px;
+    opacity: 1;
+  }
+  10% {
+    bottom: -25px;
+    opacity: 1;
+  }
+  20% {
+    bottom: 0px;
+    opacity: 1;
+  }
+  79% {
+    bottom: 0px;
+    opacity: 1;
+  }
+  90% {
+    bottom: -25px;
+    opacity: 1;
+  }
+  99% {
+    bottom: -50px;
+    opacity: 1;
+  }
+  100% {
+    bottom: -50px;
+    opacity: 0;
+  }
 }
 </style>

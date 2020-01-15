@@ -8,17 +8,34 @@
         Välkommen till
         <span id="banner-logo">Biblioteket</span>
       </h1>
-      <p>
+      <p v-if="log==false">
         Vänligen
-        <router-link to="/login">logga in</router-link>eller
-        <router-link to="/register">registrera dig</router-link>för att kunna ta del av innehållet på webbplatsen
+        <router-link to="/login"> logga in </router-link>eller
+        <router-link to="/register"> registrera dig </router-link>för att kunna ta del av innehållet på webbplatsen
+      </p>
+      <p v-if="log==true">
+        Läs och lägg till böcker
+        <router-link to="/posts"> här </router-link>eller gå till mina sidor
+        <router-link to="/profile"> här </router-link>
       </p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  beforeCreate() {
+    // Kollar om token finns
+    const token = localStorage.usertoken;
+    if (!token) {
+      // Dölj menyvalen för inloggad
+      this.log = false;
+    } else {
+      // Dölj menyvalen för utloggad
+      this.log = true;
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -46,6 +63,9 @@ p {
   text-decoration: none;
   font-weight: bold;
   font-family: "Baloo Bhai", cursive;
+}
+#banner-text a:hover {
+  color: rgb(1, 184, 89);
 }
 #banner-text p {
   font-size: 18px;
