@@ -1,9 +1,8 @@
-// Express för server
+// Importerar paket
 const express = require("express");
-// Bodyparser för JSON-hantering
 const bodyParser = require("body-parser");
-// Åtkomster
 const cors = require("cors");
+
 // Sätter upp express-appen
 const app = express();
 // Sätter upp på en port (första för Heroku och andra för localhost)
@@ -33,17 +32,10 @@ const books = require("./routes/api/books");
 // Alla routes till books ska gå via bok-filen
 app.use("/api/books", books);
 
-// Hanterar utvecklingen
-    // Statisk katalog
-    app.use(express.static(__dirname + "/dist/static/"));
-    // HAntera singe page applikationen
-    // .* refererar till alla routes
-    app.get(/.*/, (req, res) => {
-        // Skickar till startsidan
-        res.sendFile(__dirname + "/dist/index.html")
-    });
+// Statisk katalog
+app.use(express.static(__dirname + "/dist/static/"));
 
-// Lyssnar för request till port 3000
+// Lyssnar efter requests
 app.listen(port, function () {
     console.log(`Lyssnar efter anrop på ${port}`);
 });

@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
     <div class="container">
-      <h1>Böcker</h1>
       <p class="error" v-if="error">{{error}}</p>
 
       <!-- Lägg till-formuläret -->
@@ -36,7 +35,7 @@
           :disabled="!title.trim() || !author.trim() || !published.trim() || !pages.trim() "
         >Lägg till bok</button>
       </form>
-
+      <h2> Tillagda böcker</h2>
       <!-- Listning av böcker -->
       <div class="books-container">
         <div
@@ -51,6 +50,7 @@
           <p class="published">Publiceringsår: {{book.published}}</p>
           <p class="pages">Antal sidor: {{book.pages}}</p>
           <p class="user">Tillagd av: {{book.user}}</p>
+          <i class="fas fa-book"></i>
         </div>
       </div>
     </div>
@@ -146,7 +146,7 @@ export default {
 .container {
   padding: 2.5%;
 }
-.container h1 {
+.container h2 {
   text-align: center;
 }
 #add-form {
@@ -166,10 +166,18 @@ button:disabled {
   margin: 1% 22.5%;
   padding: 2.5%;
   border-radius: 10px;
+  position: relative;
 }
 .book:nth-child(even) {
   background-color: rgb(237, 237, 237);
   color: black;
+}
+.fa-book {
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translate(-5%, -50%);
 }
 /* Felmeddelande */
 .error {
@@ -180,6 +188,9 @@ button:disabled {
   margin: 1% 0;
   text-align: center;
   font-family: "Baloo Bhai", cursive;
+  width: 50%;
+  margin: 1% 22.5%;
+  padding: 2.5%;
 }
 /* Diven som poppar upp vid tillagd bok */
 #added-div {
@@ -247,10 +258,20 @@ button:disabled {
     margin: 2.5% 10%;
     padding: 2.5%;
   }
+  .error {
+    width: 75%;
+    margin: 2.5% 10%;
+    padding: 2.5%;
+  }
 }
 
 @media (max-width: 550px) {
   .book {
+    width: 90%;
+    margin: 2.5%;
+    padding: 2.5%;
+  }
+  .error {
     width: 90%;
     margin: 2.5%;
     padding: 2.5%;

@@ -45,7 +45,7 @@ label {
   margin: 0 auto;
   margin-top: 50px;
   padding: 2.5%;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(253, 253, 253);
   min-height: 100vh;
 }
 /* Formulär */
@@ -81,6 +81,29 @@ form button {
   background-color: rgb(2, 189, 92);
   color: white;
   font-family: "Baloo Bhai", cursive;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+}
+form button:disabled {
+  animation:none;
+}
+/* Knapparna pulserar då de är klickbara */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
 }
 form button:hover {
   cursor: pointer;

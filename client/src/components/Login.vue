@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- Inloggningsformuläret -->
-    <form v-on:submit.prevent="login">
+    <form id="login-form" v-on:submit.prevent="login">
       <h2>Logga in här</h2>
       <p class="loginError" v-if="loginError">{{loginError}}</p>
       <label for="email">E-postadress</label>
@@ -81,4 +81,34 @@ button:disabled {
   background-color: rgb(160, 160, 160);
   cursor: default;
 }
+#login-form {
+    position: relative;
+    top: 100px;
+    z-index: 99;
+  }
+  
+#login-form {
+    top: -500px;
+    animation: drop 1s ease forwards;
+  }
+
+  @keyframes drop {
+    0% {
+      opacity: 0;
+      transform: rotate(30deg);
+     /* border:5px solid rgb(2, 189, 92);*/
+    }
+    30% {
+      transform: rotate(-30deg);
+    }
+    70% {
+      transform: translateY(700px);
+      /*border:2px solid rgb(2, 189, 92);*/
+    }
+    100% {
+      transform: translateY(550px);
+      border:none;
+      opacity: 1;
+    }
+  }
 </style>

@@ -6,6 +6,7 @@
         <h2>Mina uppgifter</h2>
         <p>Användarnamn: {{username}}</p>
         <p>E-postadress: {{email}}</p>
+        <i class="fas fa-user"></i>
       </div>
 
       <!-- Uppdateringsformuläret (döljs som standard) -->
@@ -212,14 +213,22 @@ export default {
 }
 /* Medlemsuppgifter */
 .user-information {
-  background-color: rgb(109, 109, 109);
-  color: white;
+  background-color: rgb(237, 237, 237);
+  color: black;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   width: 50%;
   margin: 1% 22.5%;
   padding: 2.5%;
   border-radius: 10px;
-  text-align:center;
+  text-align: center;
+  position: relative;
+}
+.fa-user {
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translate(-5%, -50%);
 }
 .user-books h2 {
   text-align: center;
@@ -234,11 +243,12 @@ export default {
   padding: 2.5%;
   border-radius: 10px;
 }
+
 .delete-button {
   border: none;
   border-radius: 5px;
   width: 25%;
-  margin: 2.5% 72.5% 2.5% 2.5%;
+  margin: 2.5% 75% 2.5% 0;
   padding: 5px;
   background-color: rgb(228, 73, 73);
   color: white;
@@ -252,7 +262,7 @@ export default {
   border: none;
   border-radius: 5px;
   width: 25%;
-  margin: 2.5% 72.5% 2.5% 2.5%;
+  margin: 2.5% 75% 2.5% 0;
   padding: 5px;
   background-color: rgb(1, 153, 208);
   color: white;
@@ -262,20 +272,25 @@ export default {
   cursor: pointer;
   background-color: rgb(12, 92, 211);
 }
+
 /* Visas om inga böcker finns publicerade från användaren */
 .message {
   background-color: rgb(1, 153, 208);
   padding: 15px;
-  color: white;
   border-radius: 5px;
   margin: 1% 0;
   text-align: center;
   font-family: "Baloo Bhai", cursive;
+  color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  width: 50%;
+  margin: 1% 22.5%;
+  padding: 2.5%;
 }
 /* Uppdateringsformuläret - dolt som standard */
 #update-form {
   display: none;
-    position:absolute;
+  position: absolute;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border-radius: 10px;
   padding: 50px;
@@ -303,6 +318,24 @@ export default {
 .cross:hover {
   cursor: pointer;
   color: rgb(242, 91, 91);
+  animation: twirl 1s linear forwards infinite;
+}
+@keyframes twirl {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 #update-form input {
   padding: 1.5%;
@@ -389,6 +422,11 @@ button:disabled {
     margin: 2.5% 10%;
     padding: 2.5%;
   }
+  .message {
+    width: 75%;
+    margin: 2.5% 10%;
+    padding: 2.5%;
+  }
   .book {
     width: 75%;
     margin: 2.5% 10%;
@@ -402,6 +440,11 @@ button:disabled {
 
 @media (max-width: 550px) {
   .user-information {
+    width: 90%;
+    margin: 2.5%;
+    padding: 2.5%;
+  }
+  .message {
     width: 90%;
     margin: 2.5%;
     padding: 2.5%;

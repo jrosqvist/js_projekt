@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- Registreringsformuläret -->
-    <form v-on:submit.prevent="validatePassword">
+    <form id = "register-form" v-on:submit.prevent="validatePassword">
       <h2>Registrera konto här</h2>
       <p class="registerError" v-if="registerError">{{registerError}}</p>
       <label for="username">Användarnamn</label>
@@ -101,4 +101,20 @@ button:disabled {
   text-align: center;
   font-family: "Baloo Bhai", cursive;
 }
+
+#register-form {
+    animation: shadow 0.5s ease forwards;
+    margin-top:50px;
+  }
+
+  @keyframes shadow {
+    0% {
+      box-shadow: none;
+    }
+    70% {
+    }
+    100% {
+       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+  }
 </style>

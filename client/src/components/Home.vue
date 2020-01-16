@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div id="image-container">
-
     </div>
     <div id="banner-text">
       <h1>
@@ -78,6 +77,7 @@ p {
   font-family: "Luckiest Guy", cursive;
   letter-spacing: 0.5px;
 }
+
 
 /* Media queries */
 @media (max-width: 800px) {

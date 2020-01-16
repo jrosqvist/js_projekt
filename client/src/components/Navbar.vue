@@ -177,6 +177,7 @@ export default {
   }
   #main-nav ul.open li a {
     padding: 30px;
+    font-size:14px;
   }
   #mobile-container {
     position: relative;
