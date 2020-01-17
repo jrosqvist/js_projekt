@@ -13,9 +13,9 @@
       <form id="update-form">
         <div class="cross" v-on:click="closeUpdateForm">x</div>
         <h2>Uppdatera bok</h2>
-        <label for="update-id">ID</label>
+        <label for="update-id" class="hidden">ID</label>
         <br />
-        <input type="text" id="update-id" v-model="uid" disabled />
+        <input type="text" id="update-id" v-model="uid" disabled class="hidden" />
         <br />
         <label for="update-title">Titel</label>
         <br />
@@ -61,10 +61,7 @@
             <p class="author">Författare: {{ubook.author}}</p>
             <p class="published">Publiceringsår: {{ubook.published}}</p>
             <p class="pages">Antal sidor: {{ubook.pages}}</p>
-            <button
-              class="delete-button"
-              v-on:click="deleteBook(ubook._id); showDeletedDiv();"
-            >Radera</button>
+            <button class="delete-button" v-on:click="showDeleteBox(ubook._id);">Radera</button>
             <button
               class="update-button"
               v-on:click="showUpdateBox(ubook._id, ubook.title, ubook.author, ubook.published, ubook.pages)"
@@ -73,9 +70,23 @@
         </div>
       </div>
     </div>
+    <!-- Dialogruta vid radering -->
+    <div id="delete-box">
+      <div class="cross" v-on:click="closeDeleteBox">X</div>
+      <h4>Vill du radera boken?</h4>
+      <input type="text" v-model="uid" class="hidden" id="delete-id" />
+      <button class="return-button" v-on:click="closeDeleteBox">Tillbaka</button>
+      <button
+        v-on:click="deleteBook(); showDeletedDiv();"
+        class="delete-button"
+        id="delete-button"
+      >Radera</button>
+    </div>
+    <!-- Div som visas då en bok uppdateras -->
     <div id="updated-div">
       <p>Boken uppdateras!</p>
     </div>
+    <!-- Div som visas då en bok raderas-->
     <div id="deleted-div">
       <p>Boken raderas!</p>
     </div>
@@ -133,7 +144,8 @@ export default {
   },
   methods: {
     // Ta bort bok
-    async deleteBook(id) {
+    async deleteBook() {
+      let id = document.getElementById("delete-id").value;
       await BookService.deleteBook(id);
       this.ubooks = await BookService.getBooksByUser();
       location.reload();
@@ -141,6 +153,7 @@ export default {
     // Visar updateringsformuläret som är dolt som standard
     async showUpdateBox(id, title, author, published, pages) {
       document.getElementById("update-form").style.display = "block";
+      // FYller i fälten
       document.getElementById("update-id").value = id;
       document.getElementById("update-title").value = title;
       document.getElementById("update-author").value = author;
@@ -169,8 +182,18 @@ export default {
       this.ubooks = await BookService.getBooksByUser();
       location.reload();
     },
+    // Dölj uppdateringsformuläret
     closeUpdateForm() {
       document.getElementById("update-form").style.display = "none";
+    },
+    // Visa dialogrutan vid radering
+    showDeleteBox(id) {
+      document.getElementById("delete-box").style.display = "block";
+      document.getElementById("delete-id").value = id;
+    },
+    // Döljer radera-fönstret
+    closeDeleteBox() {
+      document.getElementById("delete-box").style.display = "none";
     },
     showUpdatedDiv() {
       let animationEvent =
@@ -309,7 +332,7 @@ export default {
   position: absolute;
   top: 10px;
   right: 20px;
-  color: rgb(228, 73, 73);
+  color: rgb(38, 38, 38);
   font-weight: bold;
   font-size: 30px;
   text-align: center;
@@ -317,7 +340,7 @@ export default {
 }
 .cross:hover {
   cursor: pointer;
-  color: rgb(242, 91, 91);
+  color: black;
   animation: twirl 1s linear forwards infinite;
 }
 @keyframes twirl {
@@ -414,6 +437,45 @@ button:disabled {
     opacity: 0;
   }
 }
+/* Dialogruta för radera */
+#delete-box {
+  display: none;
+  position: fixed;
+  padding: 5% 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(253, 253, 253);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+}
+#delete-box h4 {
+  font-size: 20px;
+  color: black;
+  text-align: center;
+}
+#delete-box button {
+  border: none;
+  border-radius: 5px;
+  width: 50%;
+  margin: 2.5% 25%;
+  padding: 10px;
+  color: white;
+  font-family: "Baloo Bhai", cursive;
+  margin-top: 5%;
+}
+.hidden {
+  display: none;
+}
+.return-button {
+  background-color: rgb(2, 189, 92);
+}
+.return-button:hover {
+  background-color: rgb(1, 184, 89);
+}
+#delete-box button:hover {
+  cursor: pointer;
+}
 
 /* Media queries */
 @media (max-width: 800px) {
@@ -436,6 +498,18 @@ button:disabled {
     padding: 25px;
     width: auto;
   }
+  /* Dialogruta för radera */
+  #delete-box {
+  width:50%;
+  }
+  #delete-box h4 {
+    font-size: 18px;
+  }
+  #delete-box button {
+    width: 60%;
+    margin: 2.5% 20%;
+    margin-top: 10%;
+  }
 }
 
 @media (max-width: 550px) {
@@ -457,6 +531,11 @@ button:disabled {
   #update-form {
     padding: 20px;
     width: auto;
+  }
+  #delete-box button {
+    width: 80%;
+    margin: 2.5% 10%;
+    margin-top: 10%;
   }
 }
 </style>

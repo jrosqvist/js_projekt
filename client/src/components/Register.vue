@@ -1,17 +1,19 @@
 <template>
   <div class="container">
     <!-- Registreringsformuläret -->
-    <form id = "register-form" v-on:submit.prevent="validatePassword">
+    <form id="register-form" v-on:submit.prevent="validatePassword">
       <h2>Registrera konto här</h2>
-      <p class="registerError" v-if="registerError">{{registerError}}</p>
+      <p class="usernameError" v-if="usernameError">{{usernameError}}</p>
       <label for="username">Användarnamn</label>
       <br />
       <input type="text" v-model="username" name="username" placeholder="Användarnamn" required />
       <br />
+      <p class="emailError" v-if="emailError">{{emailError}}</p>
       <label for="email">E-postadress</label>
       <br />
       <input type="email" v-model="email" name="email" placeholder="Ange din e-postadress" required />
       <br />
+      <p class="registerError" v-if="registerError">{{registerError}}</p>
       <label for="password">Lösenord</label>
       <br />
       <input
@@ -52,6 +54,8 @@ export default {
       email: "",
       password: "",
       passwordTwo: "",
+      usernameError: "",
+      emailError: "",
       registerError: ""
     };
   },
@@ -66,6 +70,8 @@ export default {
     },
     // Registrerar användare
     register() {
+      this.usernameError = "";
+      this.emailError = "";
       axios
         // Skicka med inmatad data
         .post("users/register", {
@@ -74,8 +80,13 @@ export default {
           password: this.password
         })
         .then(res => {
-          // Skicka till logga in-sidan om det gick som de skulle
-          router.push({ name: "Login" });
+          if (res.data.error === "Användarnamnet upptaget!") {
+            this.usernameError = "Användarnamnet upptaget! ";
+          } else if (res.data.error === "Emailadressen upptagen!") {
+            this.emailError = "Emailadressen upptagen!";
+          } else {
+            router.push({ name: "Login" });
+          }
         })
         .catch(err => {
           console.log(err);
@@ -92,7 +103,9 @@ button:disabled {
   cursor: default;
 }
 /* Felmeddelande som visas vid fel i registrering */
-.registerError {
+.registerError,
+.usernameError,
+.emailError {
   background-color: rgb(242, 91, 91);
   padding: 15px;
   color: white;
@@ -103,18 +116,18 @@ button:disabled {
 }
 
 #register-form {
-    animation: shadow 0.5s ease forwards;
-    margin-top:50px;
-  }
+  animation: shadow 0.5s ease forwards;
+  margin-top: 50px;
+}
 
-  @keyframes shadow {
-    0% {
-      box-shadow: none;
-    }
-    70% {
-    }
-    100% {
-       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    }
+@keyframes shadow {
+  0% {
+    box-shadow: none;
   }
+  70% {
+  }
+  100% {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+}
 </style>

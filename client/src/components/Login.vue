@@ -52,13 +52,15 @@ export default {
           this.email = "";
           this.password = "";
           // Loggar in och skickar till mina sidor-sidan
-          if (res.status != 404) {
+          if (res.data.error != "Användaren finns inte") {
             router.push({ name: "Profile" });
             location.reload();
+          } else {
+            this.loginError = "Felaktiga inloggningsuppgifter!";
           }
         })
         .catch(err => {
-          this.loginError = "Felaktiga inloggningsuppgifter!";
+          console.log(err);
         });
     }
   }
@@ -82,33 +84,33 @@ button:disabled {
   cursor: default;
 }
 #login-form {
-    position: relative;
-    top: 100px;
-    z-index: 99;
-  }
-  
-#login-form {
-    top: -500px;
-    animation: drop 1s ease forwards;
-  }
+  position: relative;
+  top: 100px;
+  z-index: 99;
+}
 
-  @keyframes drop {
-    0% {
-      opacity: 0;
-      transform: rotate(30deg);
-     /* border:5px solid rgb(2, 189, 92);*/
-    }
-    30% {
-      transform: rotate(-30deg);
-    }
-    70% {
-      transform: translateY(700px);
-      /*border:2px solid rgb(2, 189, 92);*/
-    }
-    100% {
-      transform: translateY(550px);
-      border:none;
-      opacity: 1;
-    }
+#login-form {
+  top: -500px;
+  animation: drop 1s ease forwards;
+}
+
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: rotate(30deg);
+    /* border:5px solid rgb(2, 189, 92);*/
   }
+  30% {
+    transform: rotate(-30deg);
+  }
+  70% {
+    transform: translateY(700px);
+    /*border:2px solid rgb(2, 189, 92);*/
+  }
+  100% {
+    transform: translateY(550px);
+    border: none;
+    opacity: 1;
+  }
+}
 </style>
